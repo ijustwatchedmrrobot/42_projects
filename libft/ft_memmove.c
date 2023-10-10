@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sozdamar <sozdamar@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 18:05:15 by sozdamar          #+#    #+#             */
-/*   Updated: 2023/10/09 18:12:11 by sozdamar         ###   ########.fr       */
+/*   Created: 2023/10/09 21:25:23 by sozdamar          #+#    #+#             */
+/*   Updated: 2023/10/09 21:25:24 by sozdamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(char *str)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t	count;
+	size_t	i;
+	char	*dest_ptr;
+	char	*src_ptr;
 
-	count = 0;
-	while (*str)
+	i = 0;
+	dest_ptr = (char *)dest;
+	src_ptr = (char *)src;
+	while (*(dest + i) && *(src + i) && n > i)
 	{
-		str++;
-		count++;
+		*(dest_ptr + i) = *(src_ptr + i);
+		i++;
 	}
-	return (count);
+	return (dest);
 }
