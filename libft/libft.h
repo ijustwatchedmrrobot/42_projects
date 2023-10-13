@@ -32,6 +32,6 @@ int		ft_toupper(int x);
 int		ft_tolower(int x);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
-int	ft_strncmp(char *s1, char *s2, size_t n);
+int		ft_strncmp(char *s1, char *s2, size_t n);
 
 #endif
