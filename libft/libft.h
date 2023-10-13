@@ -16,16 +16,21 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-int	ft_isalpha(int c);
-int	ft_isdigit(int x);
-int	ft_isalnum(int x);
-int	ft_isascii(int x);
-int	ft_isprint(int x);
-int	ft_toupper(int x);
-int	ft_tolower(int x);
-int ft_strlen(char *str);
+int		ft_isalpha(int c);
+int		ft_isdigit(int x);
+int		ft_isalnum(int x);
+int		ft_isascii(int x);
+int		ft_isprint(int x);
+size_t 	ft_strlen(char *str);
 void	*ft_memset(void *b, int c, size_t len);
-size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 void	ft_bzero(void *s, size_t n);
+void	*memcpy(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+size_t	ft_strlcpy(char *dest, const char *src, size_t size);
+size_t	ft_strlcat(char *dest, const char *src, size_t size);
+int		ft_toupper(int x);
+int		ft_tolower(int x);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
 
 #endif
