@@ -15,8 +15,8 @@
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;
-	char *ptr1;
-	char *ptr2;
+	char	*ptr1;
+	char	*ptr2;
 
 	i = 0;
 	ptr1 = s1;
@@ -25,7 +25,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (*(ptr1 + i) != *(ptr2 + i))
 			return (*(ptr1 + i) - *(ptr2 + i));
-			i++;
+		i++;
 	}
 	return (0);
 }

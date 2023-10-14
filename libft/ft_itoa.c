@@ -12,7 +12,40 @@
 
 #include "libft.h"
 
-int	num_alloc(char **num, int n)
+int	ft_neg(int *n)
+{
+	if (*n < 0)
+	{
+		*n *= -1;
+		return	(1);
+	}
+	return	(0);
+}
+
+void	ft_swap(char *s1, char *s2)
+{
+	char temp;
+	temp = s1;
+	s1 = s2;
+	s2 = temp;
+}
+
+void	ft_strrev(char *s)
+{
+	size_t	first;
+	size_t	last;
+
+	last = ft_strlen(s) - 1;
+	first = 0;
+	while (last > first)
+	{
+		ft_swap(&*(s + first),&*(s + last));
+		first++;
+		last--;
+	}
+}
+
+void	num_alloc(char **num, int n, int sign)
 {
 	int	i;
 	
@@ -22,8 +55,7 @@ int	num_alloc(char **num, int n)
 		n /= 10;
 		i++;
 	}
-	num = (char *)malloc(sizeof(char) * (i + 1));
-	return (i);
+	num = (char *)malloc(sizeof(char) * (i + 1 + sign));
 }
 
 void	num_assign(char **num, int n, int dig)
@@ -42,11 +74,10 @@ void	num_assign(char **num, int n, int dig)
 
 char	*ft_itoa(int n)
 {
-	char	*num;
-	int		dig;
-	dig = num_alloc(&num, n);
-	num_assign(&num, n, dig);
-	return	(num);
+	char	*res;
+	size_t	len;
+	
+	num_alloc(&res, n, ft_neg(n));
 }
 
 int main()

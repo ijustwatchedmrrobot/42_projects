@@ -19,7 +19,7 @@ void	*memcpy(void *dest, const void *src, size_t n)
 	char	*src_ptr;
 
 	i = 0;
-	dest_ptr = (char *)dest; 
+	dest_ptr = (char *)dest;
 	src_ptr = (char *)src;
 	while (i < n)
 	{
