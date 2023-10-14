@@ -21,11 +21,16 @@ void	ft_strs_alloc(char const *s ,char c, char ***strs)
 	strs_memo = 0;
 	while (*(s + i))
 	{
-		if (*(s + i) != c && *(s + i + 1) == c)
+		if (*(s + i) != c)
+		{
 			strs_memo++;
-		i++;
+			while (*(s + i) && *(s + i) != c)
+				i++;
+		}
+		else
+			i++;
 	}
-	*strs = (char **)malloc(sizeof(char *) * (strs_memo + 1));
+		*strs = (char **)malloc(sizeof(char *) * (strs_memo + 1));
 }
 
 void	ft_dynamic_alloc(const char* s, char c, char **strs)
@@ -44,7 +49,8 @@ void	ft_dynamic_alloc(const char* s, char c, char **strs)
 			word_size++;
 			pos++;
 		}
-		*(strs + i) = malloc(sizeof(char) * (word_size + 1));
+		if (*(s + pos))
+			*(strs + i) = (char *)malloc(sizeof(char) * (word_size + 1));
 		i++;
 		pos++;
 	}
@@ -52,31 +58,30 @@ void	ft_dynamic_alloc(const char* s, char c, char **strs)
 
 void	ft_assign(char const *s, char c, char **strs)
 {
-	size_t	i;
-	size_t	word_pos;
-	size_t	j;
+	size_t	s_letter;
+	size_t	strs_word;
+	size_t	strs_letter;
 
-	i = 0;
-	word_pos = 0;
-	while (*(s + i))
+	s_letter = 0;
+	strs_word = 0;
+	while (*(s + s_letter))
 	{
-		j = 0;
-		while (*(s + i) != c)
+		strs_letter = 0;
+		while (*(s + s_letter) != c && *(s + s_letter))
 		{
-			*(*(strs + word_pos) + j) = *(s + i);
-			i++;
+			*(*(strs + strs_word) + strs_letter) = *(s + s_letter);
+			s_letter++;
+			strs_letter++;
 		}
-		*(*(strs + word_pos) + j) = '\0';
-		i++;
-		word_pos++;
+		*(*(strs + strs_word) + strs_letter) = '\0';
+		s_letter++;
+		strs_word++;
 	}
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**strs;
-	size_t	strs_memo;
-	size_t	i;
 
 	strs = 0;
 	ft_strs_alloc(s, c, &strs);
@@ -87,5 +92,5 @@ char	**ft_split(char const *s, char c)
 
 int main()
 {
-	char **strs = ft_split("aaa bbb ccc",' ');
+	char **strs = ft_split("aaa bbbb ccccc",' ');
 }
