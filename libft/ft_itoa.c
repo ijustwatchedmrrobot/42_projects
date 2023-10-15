@@ -76,7 +76,7 @@ char	*ft_itoa(int n)
 {
 	char	*res;
 	size_t	len;
-	
+
 	num_alloc(&res, n, ft_neg(n));
 }
 
