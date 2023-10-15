@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_strs_alloc(char const *s ,char c, char ***strs)
+static void	ft_strs_alloc(char const *s, char c, char ***strs)
 {
 	size_t	i;
 	size_t	strs_memo;
@@ -30,10 +30,10 @@ void	ft_strs_alloc(char const *s ,char c, char ***strs)
 		else
 			i++;
 	}
-		*strs = (char **)malloc(sizeof(char *) * (strs_memo + 1));
+	*strs = (char **)malloc(sizeof(char *) * (strs_memo + 1));
 }
 
-void	ft_dynamic_alloc(const char* s, char c, char **strs)
+static void	ft_dynamic_alloc(const char *s, char c, char **strs)
 {
 	size_t	i;
 	size_t	word_size;
@@ -49,14 +49,13 @@ void	ft_dynamic_alloc(const char* s, char c, char **strs)
 			word_size++;
 			pos++;
 		}
-		if (*(s + pos))
-			*(strs + i) = (char *)malloc(sizeof(char) * (word_size + 1));
+		*(strs + i) = (char *)malloc(sizeof(char) * (word_size));
 		i++;
 		pos++;
 	}
 }
 
-void	ft_assign(char const *s, char c, char **strs)
+static void	ft_assign(char const *s, char c, char **strs)
 {
 	size_t	s_letter;
 	size_t	strs_word;
@@ -73,7 +72,6 @@ void	ft_assign(char const *s, char c, char **strs)
 			s_letter++;
 			strs_letter++;
 		}
-		*(*(strs + strs_word) + strs_letter) = '\0';
 		s_letter++;
 		strs_word++;
 	}
@@ -88,9 +86,4 @@ char	**ft_split(char const *s, char c)
 	ft_dynamic_alloc(s, c, strs);
 	ft_assign(s, c, strs);
 	return (strs);
-}
-
-int main()
-{
-	char **strs = ft_split("aaa bbbb ccccc",' ');
 }

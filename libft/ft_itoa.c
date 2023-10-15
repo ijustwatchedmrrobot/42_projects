@@ -12,75 +12,49 @@
 
 #include "libft.h"
 
-int	ft_neg(int *n)
+static int	ft_size(long n)
 {
-	if (*n < 0)
+	int	size;
+
+	size = 0;
+	if (n < 0)
 	{
-		*n *= -1;
-		return	(1);
+		n *= -1;
+		size++;
 	}
-	return	(0);
-}
-
-void	ft_swap(char *s1, char *s2)
-{
-	char temp;
-	temp = s1;
-	s1 = s2;
-	s2 = temp;
-}
-
-void	ft_strrev(char *s)
-{
-	size_t	first;
-	size_t	last;
-
-	last = ft_strlen(s) - 1;
-	first = 0;
-	while (last > first)
-	{
-		ft_swap(&*(s + first),&*(s + last));
-		first++;
-		last--;
-	}
-}
-
-void	num_alloc(char **num, int n, int sign)
-{
-	int	i;
-	
-	i = 0;
-	while (n)
+	if (n == 0)
+		return (1);
+	while (n > 0)
 	{
 		n /= 10;
-		i++;
+		size++;
 	}
-	num = (char *)malloc(sizeof(char) * (i + 1 + sign));
-}
-
-void	num_assign(char **num, int n, int dig)
-{
-	int	i;
-
-	i = 0;
-	*(num + dig + 1) = '\0';
-	while (dig)
-	{
-		*(num + dig - i) = n % 10;
-		dig--;
-		n /= 10; 
-	}
+	return (size);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	size_t	len;
+	char	*ret;
+	int		i;
 
-	num_alloc(&res, n, ft_neg(n));
-}
-
-int main()
-{
-	ft_itoa(15123);
+	i = ft_size((long)n);
+	ret = (char *)malloc(sizeof(char) * (i + 1));
+	if (!ret)
+		return (NULL);
+	*(ret + ft_size(n)) = '\0';
+	if (n == 0)
+		*(ret) = '0';
+	if (n < 0)
+	{
+		*(ret) = '-';
+		n *= -1;
+	}
+	i--;
+	while (n > 0)
+	{
+		*(ret + i) = '0' + (n % 10);
+		n /= 10;
+		i--;
+	}
+	return (ret);
 }

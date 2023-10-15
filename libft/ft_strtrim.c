@@ -18,10 +18,11 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	i;
 	size_t	j;
 
+	trimmed = 0;
 	if (s1 && set)
 	{
 		i = 0;
-		j = ft_strlen(s1);
+		j = ft_strlen((char *)s1);
 		while (*(s1 + i) && ft_strchr(set, *(s1 + i)))
 			i++;
 		while (*(s1 + j - 1) && ft_strchr(set, *(s1 + j - 1))

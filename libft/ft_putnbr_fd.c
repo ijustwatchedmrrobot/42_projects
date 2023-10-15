@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	num_writer(int num, int fd)
+static void	num_writer(int num, int fd)
 {
 	char	c;
 
@@ -32,8 +32,8 @@ void	ft_putnbr_fd(int nb, int fd)
 	}
 	else if (nb > 9)
 	{
-		ft_putnbr(nb / 10, fd);
-		ft_putnbr(nb % 10, fd);
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putnbr_fd(nb % 10, fd);
 	}
 	else
 		num_writer(nb, fd);

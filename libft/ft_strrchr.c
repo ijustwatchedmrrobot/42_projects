@@ -14,7 +14,19 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	i;
+	char	*adr;
 
-	i = ft_strlen(s);
+	if (!s)
+		return (NULL);
+	adr = (char *)s;
+	s += ft_strlen((char *)s);
+	while (s >= adr)
+	{
+		if (*s == c)
+			return ((char *)s);
+		s--;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }
