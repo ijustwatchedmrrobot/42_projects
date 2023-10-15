@@ -12,10 +12,12 @@
 
 #include "libft.h"
 
-static int	ft_size(long n)
+static int	ft_size(int n)
 {
 	int	size;
 
+	if (n == -2147483648)
+		return (11);
 	size = 0;
 	if (n < 0)
 	{
@@ -37,10 +39,12 @@ char	*ft_itoa(int n)
 	char	*ret;
 	int		i;
 
-	i = ft_size((long)n);
+	i = ft_size(n);
 	ret = (char *)malloc(sizeof(char) * (i + 1));
 	if (!ret)
 		return (NULL);
+	if (n == -2147483648)
+		return ("-2147483648");
 	*(ret + ft_size(n)) = '\0';
 	if (n == 0)
 		*(ret) = '0';
