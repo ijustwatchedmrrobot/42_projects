@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sozdamar <sozdamar@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/09 21:25:23 by sozdamar          #+#    #+#             */
-/*   Updated: 2023/10/09 21:25:24 by sozdamar         ###   ########.fr       */
+/*   Created: 2023/10/20 17:02:18 by sozdamar          #+#    #+#             */
+/*   Updated: 2023/10/20 17:02:20 by sozdamar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+static int	word_count(char const *s, char c)
 {
-	size_t				i;
-	unsigned char		*dest_ptr;
-	unsigned const char	*src_ptr;
+	int	i;
+	int	count;
 
-	if (!dest && !src)
-		return (NULL);
 	i = 0;
-	dest_ptr = dest;
-	src_ptr = src;
-	while (i < n)
+	count = 0;
+	while (*(s + i))
 	{
-		*(dest_ptr + i) = *(src_ptr + i);
-		i++;
+		while (*(s + i) && *(s + i) == c)
+			i++;
+		if (*(s + i))
+		{
+			i++;
+			count++;
+		}
+		while (*(s + i) && *(s + i) != c)
+			i++;
 	}
-	return (dest);
+	return (count);
+}
+
+char	**ft_split(char const *s, char c)
+{
+
 }
