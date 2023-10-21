@@ -14,17 +14,19 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*adr;
+	const char		*adr;
+	unsigned char	c_1;
 
-	adr = (char *)s;
+	adr = s;
+	c_1 = c;
 	s += ft_strlen((char *)s);
 	while (s >= adr)
 	{
-		if (*s == c)
+		if (*s == c_1)
 			return ((char *)s);
 		s--;
 	}
-	if (c == '\0')
+	if (c_1 == '\0')
 		return ((char *)s);
 	return (NULL);
 }
