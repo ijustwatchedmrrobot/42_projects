@@ -12,44 +12,48 @@
 
 #include "libft.h"
 
-static size_t	ft_toklen(const char *s, char c)
+static int	word_count(char const *s, char c)
 {
-	size_t	ret;
+	int	i;
+	int	count;
 
-	ret = 0;
-	while (*s)
+	i = 0;
+	count = 0;
+	while (*(s + i))
 	{
-		if (*s != c)
+		while (*(s + i) && *(s + i) == c)
+			i++;
+		if (*(s + i) && *(s + i) != c)
 		{
-			++ret;
-			while (*s && *s != c)
-				++s;
+			i++;
+			count++;
 		}
-		else
-			++s;
+		while (*(s + i) && *(s + i) != c)
+			i++;
 	}
-	return (ret);
+	return (count);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**ret;
-	size_t	i;
 	size_t	len;
+	size_t	i;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	ret = malloc(sizeof(char *) * (ft_toklen(s, c) + 1));
+	ret = malloc(sizeof(char *) * (word_count(s, c) + 1));
 	if (!ret)
 		return (0);
+	i = 0;
 	while (*s)
 	{
 		if (*s != c)
 		{
 			len = 0;
-			while (*s && *s != c && ++len)
-				++s;
+			while (*s && *s != c)
+			{
+				s++;
+				len++;
+			}
 			ret[i++] = ft_substr(s - len, 0, len);
 		}
 		else
