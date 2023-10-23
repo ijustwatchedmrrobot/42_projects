@@ -8,3 +8,9 @@ You should look up for;
 -Void variables;
 -Dynamic allocation;
 -Structs;
+-Memory, fd (file descriptor) functions;
+I pushed and submitted my libft and it was working fine, though i suggest detailed research about memory functions errors etc.
+P.S: I didn't make the bonuses because of the deadline but you will be using "lists" a lot in next projects, i may add later.
+
+# ft_printf
+
